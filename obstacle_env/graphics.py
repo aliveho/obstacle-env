@@ -16,7 +16,7 @@ class EnvViewer(object):
     """
     SCREEN_WIDTH = 800
     SCREEN_HEIGHT = 800
-    SAVE_IMAGES = True
+    SAVE_IMAGES = False
 
     def __init__(self, env, record_video=True):
         self.env = env
@@ -31,6 +31,7 @@ class EnvViewer(object):
 
         self.agent_display = None
         self.agent_surface = None
+        self.directory = None
         self.frame = 0
 
     def set_agent_display(self, agent_display):
@@ -72,8 +73,8 @@ class EnvViewer(object):
         self.clock.tick(self.env.config["simulation_frequency"])
         pygame.display.flip()
 
-        if self.SAVE_IMAGES:
-            pygame.image.save(self.sim_surface, "out/ObstacleEnv/obstacle-env_{}.png".format(self.frame))
+        if self.SAVE_IMAGES and self.directory:
+            pygame.image.save(self.sim_surface, str(self.directory / "obstacle-env_{}.png".format(self.frame)))
             self.frame += 1
 
     def get_image(self):
@@ -118,7 +119,7 @@ class SimulationSurface(pygame.Surface):
         super(SimulationSurface, self).__init__(size, flags, surf)
         self.origin = np.array([0, 0])
         self.scaling = 40.0
-        self.centering_position = 0.5
+        self.centering_position = 0.33
 
     def pix(self, length):
         """

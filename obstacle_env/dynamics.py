@@ -96,8 +96,6 @@ class Dynamics2D(Dynamics1D):
         2: 'DOWN',
         3: 'LEFT',
         4: 'RIGHT',
-    }
-    OTHER_ACTIONS = {
         5: 'UL',
         6: 'DR',
         7: 'RU',

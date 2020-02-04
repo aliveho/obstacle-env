@@ -22,7 +22,7 @@ class Scene2D(object):
 
     def create_random_scene(self, np_random=np.random):
         self.obstacles = []
-        for _ in range(400):
+        for _ in range(2):
             o = np.zeros((2, 1))
             while np.linalg.norm(o) < 2:
                 o = np.array([[self.BOUNDS_X * (np_random.rand() * 2 - 1)],
